@@ -5,30 +5,32 @@ const resultElement = document.getElementById('result');
 
 // Function to find the most common word
 function findMostCommonWord(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    const text = textInput.value;
-    const words = text.trim().split(/\s+/);
-    const wordCounts = {};
+  const text = textInput.value;
+  const words = text.trim().split(/\s+/);
+  const wordCounts = {};
 
-    words.forEach(function (word) {
-        if (wordCounts[word]) {
-            wordCounts[word]++;
-        } else {
-            wordCounts[word] = 1;
-        }
-    });
-
-    let mostCommonWord = '';
-    let maxCount = 0;
-
-    for (const word in wordCounts) {
-        if (wordCounts[word] > maxCount) {
-            mostCommonWord = word;
-            maxCount = wordCounts[word];
-        }
+  words.forEach(function(word) {
+    if (wordCounts[word]) {
+      wordCounts[word]++;
+    } else {
+      wordCounts[word] = 1;
     }
+  });
 
-    resultElement.textContent = `Most Common Word: ${mostCommonWord} (${maxCount} occurrences)`;
+  let mostCommonWord = '';
+  let maxCount = 0;
+
+  for (const word in wordCounts) {
+    if (wordCounts[word] > maxCount) {
+      mostCommonWord = word;
+      maxCount = wordCounts[word];
+    }
+  }
+
+  resultElement.textContent = `Most Common Word: ${mostCommonWord} (${maxCount} occurrences)`;
 }
 
+// Add event listener to the form submission
+commonWordForm.addEventListener('submit', findMostCommonWord);
